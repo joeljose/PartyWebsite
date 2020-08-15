@@ -1,0 +1,200 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="content-section">
+      <div class="media">
+        <img class="rounded-circle account-img" src="{{ image_file }}">
+        <div class="media-body">
+          <h2 class="account-heading">{{ current_user.username }}</h2>
+          <p class="text-secondary">{{ current_user.email }}</p>
+        </div>
+      </div>
+        <form method="POST" action="" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Account Info</legend>
+                
+                
+                
+                <div class="form-group">
+                    {{ form.username.label(class="form-control-label") }}
+
+                    {% if form.username.errors %}
+                        {{ form.username(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.username.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.username(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                
+                
+                
+                <div class="form-group">
+                    {{ form.email.label(class="form-control-label") }}
+                    {% if form.email.errors %}
+                        {{ form.email(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.email.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.email(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                
+                
+                <div class="form-group">
+                    {{ form.picture.label() }}
+                    {{ form.picture(class="form-control-file") }}
+                    {% if form.picture.errors %}
+                        {% for error in form.picture.errors %}
+                            <span class="text-danger">{{ error }}</span></br>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                
+                
+                <div class="form-group">
+                    {{ form.district.label(class="form-control-label") }}
+                    {% if form.district.errors %}
+                        {{ form.district(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.district.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{form.district(class="form-control")}}
+                    {% endif %}
+                </div>
+               
+               
+                
+    
+
+                <div class="form-group">
+                    {{ form.lsg_type.label(class="form-control-label") }}
+                    {% if form.lsg_type.errors %}
+                        {{ form.lsg_type(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.lsg_type.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{form.lsg_type(class="form-control")}}
+                    {% endif %}
+                </div> 
+
+
+
+                <div class="form-group">
+                    {{ form.lsg_name.label(class="form-control-label") }}
+                    {% if form.lsg_name.errors %}
+                        {{ form.lsg_name(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.lsg_name.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{form.lsg_name(class="form-control")}}
+                    {% endif %}
+                </div>                
+ 
+                                
+                <div class="form-group">
+                    {{ form.phone.label(class="form-control-label") }}
+                    {% if form.phone.errors %}
+                        {{ form.phone(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.phone.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.phone(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+
+                
+                
+                
+            </fieldset>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-outline-info") }}
+            </div>
+        </form>
+    </div>
+
+
+
+
+
+    <script>
+        dist = document.getElementById('district');
+        lsgtype = document.getElementById('lsg_type');
+        lsgname = document.getElementById('lsg_name');
+        var toggle = 0;
+        
+    
+        dist.onclick = function(){
+            if(toggle%2==0){
+            
+                fetch('/register/districtClick').then(function(response){
+                    response.json().then(function(data){
+                        optionHTML = '';
+                        for(d of data.listOfdist){
+                            optionHTML += '<option value="' + d.id +'">' + d.name + '</option>'
+                        }
+                        dist.innerHTML= optionHTML;
+    
+                    });
+                });            
+                toggle = toggle+1;
+            }
+            else{
+                toggle = toggle+1;
+            }
+
+        }
+        
+        
+        
+        dist.onchange = function(){
+            fetch('/register/districtSelect').then(function(response){
+                response.json().then(function(data){
+                    optionHTML = '';
+                    for(lsgType of data.listOfTypes){
+                        optionHTML += '<option value="' + lsgType.id +'">' + lsgType.name + '</option>'
+                    }
+                    lsgtype.innerHTML = optionHTML;
+                    lsgname.innerHTML = '';
+                });
+            });
+        }
+
+        lsgtype.onchange = function(){
+            district_id = dist.value;
+            type_id = lsgtype.value;
+            myString =  district_id + ' ' + type_id
+            fetch('/register/nameSelect/' + myString).then(function(response){
+                response.json().then(function(data){
+                    optionHTML ='';
+                    for(lsgName of data.lsgnames){
+                        optionHTML += '<option value="' + lsgName.id +'">' + lsgName.name + '</option>'
+                    }
+                    lsgname.innerHTML = optionHTML;
+                });
+            });
+        }
+        
+        
+
+
+    </script>
+{% endblock content %}
