@@ -1,10 +1,13 @@
-from flask import render_template, url_for, flash, redirect, request, Blueprint, jsonify
+from flask import render_template, url_for, flash, redirect, request, Blueprint, jsonify, abort, current_app, send_from_directory
 from flask_login import login_user, current_user, logout_user, login_required
 from mySite import db, bcrypt
 from mySite.models import User, Post, Body_type, Body_name, District_name
 from mySite.users.forms import (RegistrationForm, LoginForm, UpdateAccountForm,
                                    RequestResetForm, ResetPasswordForm)
 from mySite.users.utils import save_picture, send_reset_email
+import xlsxwriter 
+from datetime import datetime
+import os
 
 users = Blueprint('users', __name__)
 
@@ -137,6 +140,55 @@ def user_posts(username):
         .order_by(Post.date_posted.desc())\
         .paginate(page=page, per_page=5)
     return render_template('user_posts.html', posts=posts, user=user)
+
+
+@users.route("/user/<int:user_id>/delete", methods=['POST'])
+@login_required
+def delete_user(user_id):
+    if (current_user.privelege==0):
+        abort(403)
+    user = User.query.get_or_404(user_id)
+    for post in user.posts:
+        db.session.delete(post)
+    db.session.delete(user)
+    db.session.commit()
+    flash('User has been deleted!', 'success')
+    return redirect(url_for('main.home'))
+
+
+@users.route("/user/data")
+@login_required
+def data():
+    if (current_user.privelege==0):
+        abort(403)
+    user_list = User.query.all()
+    name = os.path.join(current_app.root_path, 'static/data_files/myData.xlsx')
+    directory= os.path.join(current_app.root_path, 'static/data_files')
+    path='myData.xlsx'
+    workbook = xlsxwriter.Workbook(name) 
+    worksheet = workbook.add_worksheet() 
+    date=datetime.utcnow().strftime('%d-%m-%Y')
+    worksheet.write(0, 0,date )
+    row = 1
+    column = 0   
+    
+    heading=['Id', 'Username', 'Email', 'Phone', 'District', 'LocalBodyType', 'LocalBodyName']
+    for head in heading :
+        worksheet.write(row, column, head)
+        column += 1
+    row=2
+    for item in user_list:
+        column=0
+        line=[item.id, item.username, item.email, item.phone, item.district, item.localBodyType, item.localBodyName]
+        for block in line :
+            worksheet.write(row, column, block)
+            column += 1
+        row+=1
+    workbook.close()
+    return send_from_directory(directory, path, as_attachment=True)
+
+
+
 
 
 @users.route("/reset_password", methods=['GET', 'POST'])

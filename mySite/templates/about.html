@@ -1,4 +1,88 @@
 {% extends "layout.html" %}
-{% block content %}
-    <h1>About Page</h1>
-{% endblock content %}
+{% block content2 %}
+    <article class="media content-section">
+          <div class="media-body">
+          <div class="container">
+              <div class="row">
+                <div class="col-8">
+                  <h2><a class="article-title" >Everyone in Kerala dream of an ideal State.</a></h2>
+                  <p class="article-content">There is no bigger group of voters in Kerala than its farmers. It’s a group that’s been battling poverty for decades, stoked in recent times by rising debt as well as crop failures. Thousands of farmers take their own lives every year because of the inapproriate government approch towards their problems. Their sheer numbers mean that, with a general election approaching, farmers’ concerns are becoming politicians’ concerns. Soon after the election, the politicians will forget all those promises given to the farmers. This situation repeats in every election.</p>
+                  <p class="article-content">Is there any solution for this?</p>
+                                   
+                </div>
+                <div class="col-4">
+                  <img src="{{ url_for('static', filename='about1.jpg') }}" width="100%" valign="center"  >
+                </div>
+              </div>
+          </div>
+          </div>
+    </article>
+    <article class="media content-section">
+          <div class="media-body">
+          <div class="container">
+              <div class="row">
+                
+                <div class="col-4">
+                  <img src="{{ url_for('static', filename='about2.jpg') }}" width="100%" valign="center"  >
+                </div>
+                <div class="col-8">
+                  <h2><a class="article-title" >Unemployement of educated youth is rising.</a></h2>
+                  <p class="article-content">In Kerala, joblessness is found to be basically a problem for the educated youth, leading to their migration to other parts of India and abroad in search of employment. India’s economy is in a severe slowdown that is only going to get worse in a pandemic-stricken world.
+In this situation Kerala could lose nearly Rs 13,000 crore in annual foreign remittances with more than 4 lakh Keralites who live abroad planning to return home in the wake of the Covid-19 pandemic.</p>
+                  <p class="article-content">Are we prepared to address these situations?</p>
+                                   
+                </div>
+              </div>
+          </div>
+          </div>
+    </article>
+    
+     <article class="media content-section">
+          <div class="media-body">
+          <div class="container">
+              <div class="row">
+                <div class="col-8">
+                  <h2><a class="article-title" >Corruption is cancer of our society.</a></h2>
+                  <p class="article-content">Corruption in Kerala is a result of the connection between bureaucrats, politicians and criminals. Earlier, bribes were paid for getting wrong things done, but now bribe is paid for getting right things done at right time. Further, corruption has become something respectable in Kerala, because respectable people are involved in it.
+
+ Nowadays politics is only for criminals and criminals are meant to be in politics. Elections in many parts of the country have become associated with a host of criminal activities. People of Kerala are not awakened and enlightened. They fear to raise their voice against anti-social elements prevailing in the society. 
+
+People who work on right principles are unrecognized and considered to be foolish in the modern society. Strong and stringent laws need to be enacted which gives no room for the guilty to escape. </p>
+                  <p class="article-content">Are you willing to act?</p>
+                                   
+                </div>
+                <div class="col-4">
+                  <img src="{{ url_for('static', filename='about3.jpg') }}" width="100%" valign="center"  >
+                </div>
+              </div>
+          </div>
+          </div>
+    </article>   
+    
+    
+    
+    <article class="media content-section">
+          <div class="media-body">
+          <h3 align="center">Office bearers of Nava Kerala People's Party</h3>
+          <div class="container">
+              <div class="row">
+                <div class="col-sm">
+                  <img src="{{ url_for('static', filename='pre.jpg') }}" width="80%" align="center"  >
+                  <h5 align="center">President</h5>
+                  <h5 align="center">Jose Francis</h5>
+                </div>
+                <div class="col-sm">
+                  <img src="{{ url_for('static', filename='sec.jpg') }}" width="78%" align="center"  >
+                  <h5 align="center">Secretary</h5>
+                  <h5 align="center">Ajeesh Baby</h5>
+                </div>
+                <div class="col-sm">
+                  <img src="{{ url_for('static', filename='tre.jpg') }}" width="75%" align="center"  >
+                  <h5 align="center">Treasurer</h5>
+                  <h5 align="center">Rubin Scaria</h5>
+                </div>
+              </div>
+          </div>
+          </div>
+    </article>
+{% endblock content2 %}

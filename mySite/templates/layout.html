@@ -7,43 +7,55 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
-
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">   
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='font-awesome.min.css') }}">
+ 
     {% if title %}
-        <title>mySite - {{ title }}</title>
+        <title>NKPP - {{ title }}</title>
     {% else %}
-        <title>mySite</title>
+        <title>NKPP</title>
     {% endif %}
 </head>
 <body>
     <header class="site-header">
-      <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+      <nav class="navbar navbar-expand-md navbar-dark bg-info fixed-top">
         <div class="container">
-          <a class="navbar-brand mr-4" href="/">mySite</a>
+          <img class="rounded-circle article-img" src="{{ url_for('static', filename='logo.png') }}">
+          <a class="navbar-brand mr-4 nav-link" href="/" style="font-family:verdana;"><b>NAVA KERALA PEOPLE'S PARTY</b></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
-              <a class="nav-item nav-link" href="{{ url_for('main.home') }}">Home</a>
-              <a class="nav-item nav-link" href="{{ url_for('main.about') }}">About</a>
+              <a class="nav-item nav-link" href="{{ url_for('main.home') }}" >Home</a>
+              <a class="nav-item nav-link" href="{{ url_for('main.about') }}" >About</a>
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
               {% if current_user.is_authenticated %}
+              
+             
+              {% if current_user.privelege==1 %}
+                <a class="nav-item nav-link" href="{{ url_for('main.approve_post') }}">Approve Post</a>
+                <a class="nav-item nav-link" href="{{ url_for('users.data') }}">Data</a>
+              {% endif %}
+              
                 <a class="nav-item nav-link" href="{{ url_for('posts.new_post') }}">New Post</a>
                 <a class="nav-item nav-link" href="{{ url_for('users.account') }}">Account</a>
                 <a class="nav-item nav-link" href="{{ url_for('users.logout') }}">Logout</a>
               {% else %}
                 <a class="nav-item nav-link" href="{{ url_for('users.login') }}">Login</a>
-                <a class="nav-item nav-link" href="{{ url_for('users.register') }}">Register</a>
+                <a class="nav-item nav-link" href="{{ url_for('users.register') }}">Become a Member</a>
               {% endif %}
             </div>
           </div>
         </div>
       </nav>
     </header>
+    {%if title!='About' %}
     <main role="main" class="container">
       <div class="row">
         <div class="col-md-8">
@@ -60,20 +72,83 @@
         </div>
         <div class="col-md-4">
           <div class="content-section">
-            <h3>Our Sidebar</h3>
-            <p class='text-muted'>You can put any information here you'd like.
+            
+            <p class='text-muted'>
               <ul class="list-group">
-                <li class="list-group-item list-group-item-light">Latest Posts</li>
-                <li class="list-group-item list-group-item-light">Announcements</li>
-                <li class="list-group-item list-group-item-light">Calendars</li>
-                <li class="list-group-item list-group-item-light">etc</li>
+              <li class="list-group-item list-group-item-light"><img src="{{ url_for('static', filename='logo.png') }}" width="100%" height="100%"></li>
+                <li class="list-group-item list-group-item-light">Democratic</li>
+                <li class="list-group-item list-group-item-light">Socialist</li>
+                <li class="list-group-item list-group-item-light">Secular</li>
+                
               </ul>
             </p>
           </div>
         </div>
       </div>
     </main>
+    {%else%}
+    <main role="main" class="container">
+     {% block content2 %}{% endblock %}
+    </main>
+    {%endif%}
 
+
+<!-- -->
+
+		<footer class="footer-distributed">
+
+			<div class="footer-left">
+             <img src="{{ url_for('static', filename='flag.png') }}">
+				<h3>NKP<span> party</span></h3>
+
+				<p class="footer-links">
+					<a href="#">Democratic</a>
+					|
+					<a href="#">Socialist</a>
+					|
+					<a href="#">Secular</a>
+				</p>
+
+				<p class="footer-company-name">© 2020 Nava Kerala People's Party.</p>
+				
+					
+				
+			</div>
+
+			<div class="footer-center">
+				<div>
+					<i class="fa fa-map-marker"></i>
+					  <p><span>10 / 1631 - Athani,
+						 Kusumagiri.P.O, Kakkanad</span>
+						Ernakulam, Kerala - 682 030</p>
+				</div>
+
+				<div>
+					<i class="fa fa-phone"></i>
+					<p>+91 755 884 4814</p>
+				</div>
+				<div>
+					<i class="fa fa-envelope"></i>
+					<p><a href="mailto:nkpparty@gmail.com">nkpparty@gmail.com</a></p>
+				</div>
+			</div>
+			<div class="footer-right">
+				<p class="footer-company-about">
+					<span>Nava Kerala People's Party</span>
+					A regional political party based in Kerala.The goal of this collaborative work is to develop and envisage a developed state.</p>
+				<div class="footer-icons">
+					<a href="https://www.facebook.com/Nava-Kerala-Peoples-Party-104697971351898/?modal=admin_todo_tour" target="_blank"><i class="fa fa-facebook"></i></a>
+					<a href="#"><i class="fa fa-twitter"></i></a>
+					<a href="#"><i class="fa fa-youtube"></i></a>
+				</div>
+			</div>
+		    <div>
+    <!--    		<a href="https://www.linkedin.com/in/joel-jose-527b80102" target="_blank" >Designed By Joel Jose</a>  -->
+			</div> 
+		</footer>
+
+
+ 
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

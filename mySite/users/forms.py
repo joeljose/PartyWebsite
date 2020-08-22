@@ -4,7 +4,6 @@ from wtforms import StringField, PasswordField, SubmitField, BooleanField, Selec
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from flask_login import current_user
 from mySite.models import User, Post, Body_type, Body_name, District_name
-import phonenumbers
 
 
 class NonValidatingSelectField(SelectField):
