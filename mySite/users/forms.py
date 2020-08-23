@@ -11,13 +11,13 @@ class NonValidatingSelectField(SelectField):
         pass
 
 class RegistrationForm(FlaskForm):
-    username = StringField('Username',validators=[DataRequired(), Length(min=2, max=20)])
+    username = StringField('Name',validators=[DataRequired(), Length(min=2, max=20)])
     email = StringField('Email',validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
     confirm_password = PasswordField('Confirm Password',validators=[DataRequired(), EqualTo('password')])
     district = NonValidatingSelectField('District', choices = [],coerce=int,validators=[DataRequired()])
-    lsg_type = NonValidatingSelectField('LSG type', choices = [],coerce=int,validators=[DataRequired()])
-    lsg_name = NonValidatingSelectField('LSG name', choices = [],validators=[DataRequired()],coerce=int)
+    lsg_type = NonValidatingSelectField('Local Self Government Institution type', choices = [],coerce=int,validators=[DataRequired()])
+    lsg_name = NonValidatingSelectField('Local Self Government Institution name', choices = [],validators=[DataRequired()],coerce=int)
     phone = StringField('Phone',validators=[DataRequired(),Length(min=10,max=16)])
     submit = SubmitField('Sign Up')
     
@@ -57,7 +57,7 @@ class RegistrationForm(FlaskForm):
 
 
 class UpdateAccountForm(FlaskForm):
-    username = StringField('Username',
+    username = StringField('Name',
                            validators=[DataRequired(), Length(min=2, max=20)])
     email = StringField('Email',
                         validators=[DataRequired(), Email()])
@@ -67,8 +67,8 @@ class UpdateAccountForm(FlaskForm):
     
     
     district = NonValidatingSelectField('District', choices = [],coerce=int,validators=[DataRequired()])
-    lsg_type = NonValidatingSelectField('LSG type', choices = [],coerce=int,validators=[DataRequired()])
-    lsg_name = NonValidatingSelectField('LSG name', choices = [],validators=[DataRequired()],coerce=int)
+    lsg_type = NonValidatingSelectField('Local Self Government Institution type', choices = [],coerce=int,validators=[DataRequired()])
+    lsg_name = NonValidatingSelectField('Local Self Government Institution name', choices = [],validators=[DataRequired()],coerce=int)
     phone = StringField('Phone',validators=[DataRequired(),Length(min=10,max=16)])
     
     def validate_district(self,district):
