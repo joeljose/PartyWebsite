@@ -12,7 +12,7 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">   
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='font-awesome.min.css') }}">
- 
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
     {% if title %}
         <title>NKPP - {{ title }}</title>
     {% else %}
@@ -23,7 +23,7 @@
     <header class="site-header">
       <nav class="navbar navbar-expand-md navbar-dark bg-info fixed-top">
         <div class="container">
-          <img class="rounded-circle article-img" src="{{ url_for('static', filename='logo.png') }}">
+          <!--<img class="rounded-circle article-img" src="{{ url_for('static', filename='logo.png') }}">-->
           <a class="navbar-brand mr-4 nav-link" href="/" style="font-family:verdana;"><b>NAVA KERALA PEOPLE'S PARTY</b></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -76,9 +76,13 @@
             <p class='text-muted'>
               <ul class="list-group">
               <li class="list-group-item list-group-item-light"><img src="{{ url_for('static', filename='logo.png') }}" width="100%" height="100%"></li>
-                <li class="list-group-item list-group-item-light">Democratic</li>
-                <li class="list-group-item list-group-item-light">Socialist</li>
-                <li class="list-group-item list-group-item-light">Secular</li>
+                <li class="list-group-item list-group-item-light">Democratic | Socialist | Secular</li>
+                <li class="list-group-item list-group-item-light">കേരള ജനത ഏറ്റവും കൂടുതൽ ചർച്ച ചെയ്യുന്ന വിഷയങ്ങൾ.</li>
+                <li class="list-group-item list-group-item-light">അഴിമതി. എല്ലാ രംഗങ്ങളിലും അഴിമതി നിറഞ്ഞുനിൽക്കുന്നു. അഴിമതി രഹിത ഭരണം എങ്ങനെ പ്രാവർത്തികമാക്കാൻ കഴിയും?</li>
+                <li class="list-group-item list-group-item-light">കെടുകാര്യസ്ഥത. മന്ത്രിസഭയും ഗവണ്മെന്റ് ഓഫീസികളും കെടുകാര്യസ്ഥതയുടെ കൂത്തമ്പലമാണ്. എങ്ങനെ കാര്യക്ഷമമായി കേരളം ഭരിക്കാം?</li>
+                <li class="list-group-item list-group-item-light">സർക്കാരിന്റെ കടബാധ്യത. ധനകാര്യ നടത്തിപ്പിൽ ഒരു പ്രാവീണ്യവും ഇല്ലാത്തവരാണ് ഇതുവരെ ധനകാര്യ മന്ത്രാലയം കൈകാര്യം ചെയ്തതെന്ന് 64 വര്ഷം കൊണ്ട് 3 ലക്ഷം കോടി കടബാധ്യത ഉണ്ടാക്കിയതിൽ നിന്ന് നമുക്ക് മനസിലാക്കാം. എങ്ങനെ ഇതിൽ നിന്ന് കരകയറാൻ പറ്റും?</li>
+                <li class="list-group-item list-group-item-light">നഷ്ട്ട കച്ചവടമായി കൃഷി. കൃഷി എങ്ങനെ ലാഭകരമാക്കും?</li>
+                <li class="list-group-item list-group-item-light">വ്യവസായത്തിൽ നിന്നുള്ള സംസ്ഥാന വരുമാനം തുലോം തുച്ഛം. സമരങ്ങൾ പ്രധാന കാരണമെന്ന് എല്ലാവർക്കുമറിയാം. എങ്ങനെ വ്യവസായം മെച്ചപ്പെടുത്താം?</li>
                 
               </ul>
             </p>
@@ -143,7 +147,7 @@
 				</div>
 			</div>
 		    <div>
-    <!--    		<a href="https://www.linkedin.com/in/joel-jose-527b80102" target="_blank" >Designed By Joel Jose</a>  -->
+        		<a href="https://www.linkedin.com/in/joel-jose-527b80102" target="_blank" >Designed By Joel Jose</a>  
 			</div> 
 		</footer>
 
