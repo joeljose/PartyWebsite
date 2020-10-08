@@ -23,4 +23,5 @@ def approve_post():
 
 @main.route("/about")
 def about():
-    return render_template('about.html', title='About')
+#    return render_template('about.html', title='About')
+    return render_template('under.html')
