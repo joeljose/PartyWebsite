@@ -1,4 +1,4 @@
-from flask import render_template, request, Blueprint
+from flask import render_template, request, Blueprint, send_file, redirect
 from mySite.models import Post
 
 main = Blueprint('main', __name__)
@@ -29,3 +29,9 @@ def approve_post():
 def about():
     return render_template('about.html', title='About')
 #    return render_template('under.html')
+
+@main.route("/manifesto")
+def manifesto():
+    # with open('static/manifesto.pdf', 'rb') as static_file:
+    #     return send_file(static_file, attachment_filename='manifesto.pdf')
+    return redirect("static/manifesto.pdf")
