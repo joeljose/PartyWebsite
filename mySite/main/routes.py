@@ -1,4 +1,4 @@
-from flask import render_template, request, Blueprint, send_file, redirect
+from flask import render_template, request, Blueprint, redirect
 from mySite.models import Post
 
 main = Blueprint('main', __name__)
@@ -6,14 +6,14 @@ main = Blueprint('main', __name__)
 @main.route("/")
 @main.route("/index")
 def index():
-    return render_template('index.html',title='About')
+    return render_template('index.html',title='Intro')
 
 
 @main.route("/home")
 def home():
     page = request.args.get('page', 1, type=int)
     posts = Post.query.filter_by(status=1).order_by(Post.date_posted.desc()).paginate(page=page, per_page=5)
-    return render_template('home.html', posts=posts)
+    return render_template('home.html', posts=posts, title="Blog")
 #    return render_template('under.html')
 
 
