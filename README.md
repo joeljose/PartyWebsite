@@ -1,5 +1,6 @@
 # Website For NKPP
 
+Phase-I for the website(currently running on Phase-III; Not maintained by me).
 A blogger type website for a regional political party(Nava Kerala People’s Party) using flask framework.
 
 ## Follow Me
